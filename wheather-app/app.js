@@ -1,11 +1,11 @@
-console.log('STARTING')
+const geocode = require('./utils/geocode')
+// geocode('Mumbai', (error , data) => {
+//     console.log('Error', error);
+//     console.log('Data', data);
+// })
 
-setTimeout(() => {
-    console.log('2 seconds');
-},2000)
 
-setTimeout(() => {
-    console.log('0 seconds');
-},0)
-
-console.log('ENDING')
+forecast(72.8333,18.966667, (error , data) => {
+    console.log('Error', error);
+    console.log('Data', data);
+})
