@@ -32,22 +32,20 @@ request({url:geocodingURL,json : true},(error, response) => {
 
 //console.log('>>>>>>>>>>>>>>>>>>>>>>>');
 
-const forecast = (address, callback) => {
-    const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'+encodeURIComponent(address)+'.json?access_token=pk.eyJ1Ijoic3dhcG5pbG5hZ2FvbmthciIsImEiOiJjand4Ym1zczcxMzhpNDFtb2hrbm9oYzQyIn0.VH7cHUj_XYw4lYBHJf1VFg';
-    request({url:url,json : true},(error, response) => {
+const forecast = (latitude, longitude, callback) => {
     
+    const darkskyurl = 'https://api.darksky.net/forecast/7de5bc7427e68c69f6d252b2bad3195b/'+latitude+','+longitude
+    request({url:darkskyurl,json : true},(error, response) => {
         if(error){
             callback('not connected to api', undefined);
-            
-        }else if(response.body.features.length === 0){
-            callback('try again', undefined);
+        }else if(response.body.error){
+            callback('not connected to api', undefined);
         }else{
-            callback(undefined,{
-                latitude : response.body.features[0].center[0],
-                longitude : response.body.features[0].center[1],
-                place_name : response.body.features[0].place_name
+            callback(undefined, {
+                data : response.body.daily.summary
             });
         }
+        //console.log(response.body);
     })
 }
 
