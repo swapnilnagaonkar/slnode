@@ -15,11 +15,13 @@ console.log(user)
 const product = {
     lable : 'redbook',
     sale_price : '34',
-    stock : '23'
+    stock : '23',
+    rating1 :4.5 
 }
 
 
-const {lable, stock} = product
+const {lable:product_lable, stock, rating=5} = product
 
-console.log(lable)
+console.log(product_lable)
 console.log(stock)
+console.log(rating)
